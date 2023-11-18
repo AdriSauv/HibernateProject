@@ -37,7 +37,7 @@
 		</nav>
 	</header>
 	<main>
-		<form action="LeServlet?flag=ajouterUser" method="post">
+		<form action="LeServlet?flag=addUser" method="post">
 		    <fieldset>
 		        <legend>Ajouter un Utilisateur</legend>
 		        <div class="mb-3">
@@ -49,8 +49,8 @@
 		            <input type="text" class="form-control" name="nom" id="nom">
 		        </div>
 		        <div class="mb-3">
-		            <label for=""numRue"" class="form-label">Numéro de rue :</label>
-		            <input type="text" class="form-control" name="numRue" id=""numRue"">
+		            <label for="numRue" class="form-label">Numéro de rue :</label>
+		            <input type="text" class="form-control" name="numRue" id="numRue">
 		        </div>
 		        <div class="mb-3">
 		            <label for="nomRue" class="form-label">Nom de rue :</label>
@@ -69,6 +69,7 @@
 		            <input type="text" class="form-control" name="tel" id="tel">
 		        </div>
 		        <button type="submit" class="btn btn-outline-success">Envoyer</button>
+		        <button type="reset" class="btn btn-outline-warning">Reset</button>
 		    </fieldset>
 		</form>
 		<br>
@@ -94,8 +95,23 @@
 		        <input type="submit" class="btn btn-outline-danger" value="Delete">
 		    </fieldset>
 		</form>
+		<br>
 		<form action="LeServlet?flag=modifyUser" method="post">
-		
+			<fieldset>
+				<legend>Modifier un Utilisateur</legend>
+				<div>
+		            <label for="modifyUser" class="form-label">Utilisateur</label>
+		            <select class="form-select" id="modifyUser" name="modifyUser">
+		                <%
+		                    for (Users user : users) {
+		                %>
+		                <option value="<%= user.getIdUsers() %>"><%= user.getNom() %> <%= user.getPrenom() %></option>
+		                <%
+		                    }
+		                %>
+		            </select>
+		        </div>
+			</fieldset>
 		</form>
 	</main>
 </body>

@@ -30,7 +30,6 @@ public class LeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -39,7 +38,7 @@ public class LeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String flag = request.getParameter("flag");
-		if(flag.equalsIgnoreCase("ajouterUser")) {
+		if(flag.equalsIgnoreCase("addUser")) {
 			this.doAjouterUsers(request,response);
 		} else if (flag.equalsIgnoreCase("deleteUser")) {
 			this.doDeleteUser(request, response);
