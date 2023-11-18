@@ -22,11 +22,12 @@
 			<input type="submit" value="Envoyer">
 		</fieldset>
 	</form>
-	<form method="POST" action="MyServlet?flag=deleteUser">
+	<br>
+	<form method="POST" action="LeServlet?flag=deleteUser">
 	    <fieldset>
-	        <legend>Supprimer un utilisateur</legend>
+	        <legend>Supprimer un Utilisateur</legend>
 	        <div>
-	            <label for="deleteUser">User</label>
+	            <label for="deleteUser">Utilisateur</label>
 	            <select id="deleteUser" name="deleteUser">
 	                <%
 	                    HibernateDAO dao = new HibernateDAO();
@@ -40,6 +41,7 @@
 	                %>
 	            </select>
 	        </div>
+	        <br>
 	        <input type="submit" value="Delete">
 	    </fieldset>
 	</form>

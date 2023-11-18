@@ -40,12 +40,10 @@ public class LeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String flag = request.getParameter("flag");
 		if(flag.equalsIgnoreCase("ajouterUser")) {
-			this.doAjouterUsers(request,response); }
-//		} else if (flag.equalsIgnoreCase("deleteUser")) {
-//			this.doDeleteUser(request, response);
-//		}
-		
-		
+			this.doAjouterUsers(request,response);
+		} else if (flag.equalsIgnoreCase("deleteUser")) {
+			this.doDeleteUser(request, response);
+		}
 	}
 	
 	private void doAjouterUsers(HttpServletRequest request, HttpServletResponse response) {
@@ -60,5 +58,24 @@ public class LeServlet extends HttpServlet {
 		Users user = new Users(prenom, nom, numRue, nomRue, cp, ville, tel);
 		HibernateDAO dao = new HibernateDAO();
 		dao.ajouterUsers(user);
+	}
+	
+	private void doDeleteUser(HttpServletRequest request, HttpServletResponse response) {
+		String idUserString = request.getParameter("deleteUser");
+		
+		if(idUserString != null && !idUserString.isEmpty()) {
+			try {
+				int idUser = Integer.parseInt(idUserString);
+				HibernateDAO dao = new HibernateDAO();
+				Users deleteUser = dao.getUserById(idUser);
+				
+				if (deleteUser != null) {
+					dao.deleteUser(deleteUser);
+					return;
+				}
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
