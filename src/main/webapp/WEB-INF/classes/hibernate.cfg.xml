@@ -12,5 +12,6 @@
   <property name="hibernate.use_sql_comments">true</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
   <mapping class="org.eclipse.model.Users"/>
+  <mapping class="org.eclipse.model.Compte"/>
  </session-factory>
 </hibernate-configuration>
