@@ -3,6 +3,7 @@ package org.eclipse.controller;
 import java.io.IOException;
 
 import org.eclipse.dao.HibernateDAO;
+import org.eclipse.model.Categorie;
 import org.eclipse.model.Compte;
 import org.eclipse.model.Users;
 
@@ -48,6 +49,8 @@ public class LeServlet extends HttpServlet {
 			this.doAddUserAccount(request, response);
 		} else if (flag.equalsIgnoreCase("login")) {
 			this.doLogin(request, response);
+		} else if (flag.equalsIgnoreCase("addCategorie")) {
+			this.doAddCategorie(request, response);
 		}
 	}
 	
@@ -131,6 +134,22 @@ public class LeServlet extends HttpServlet {
 			request.setAttribute("errorMessage", "Invalid login");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("connexion.jsp");
 	        dispatcher.forward(request, response);
+		}
+	}
+	
+	private void doAddCategorie(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			
+		String designation = request.getParameter("designation");
+		
+		Categorie cat = new Categorie(designation);
+		
+		HibernateDAO dao = new HibernateDAO();
+		
+		dao.addCategorie(cat);
+		
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
 		}
 	}
 }

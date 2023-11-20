@@ -2,6 +2,7 @@ package org.eclipse.dao;
 
 import java.util.List;
 
+import org.eclipse.model.Categorie;
 import org.eclipse.model.Compte;
 import org.eclipse.model.Users;
 import org.hibernate.*;
@@ -12,15 +13,27 @@ public class HibernateDAO {
     private static SessionFactory sf;
 
     static {
-        // Lance ce code dès lors qu'on fait appel à HibernateDAO
-        Configuration configuration = new Configuration().configure();
-        sf = configuration.buildSessionFactory();
+        try {
+            Configuration configuration = new Configuration().configure();
+            sf = configuration.buildSessionFactory();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ExceptionInInitializerError(e);
+        }
     }
 
     public void ajouterUser(Users user) {
         try (Session session = sf.openSession()) {
             Transaction tr = session.beginTransaction();
             session.persist(user);
+            tr.commit();
+        }
+    }
+    
+    public void addCategorie(Categorie cat) {
+        try (Session session = sf.openSession()) {
+            Transaction tr = session.beginTransaction();
+            session.persist(cat);
             tr.commit();
         }
     }

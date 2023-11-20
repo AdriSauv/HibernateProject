@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,22 +79,11 @@
             <button class="btn btn-outline-success" type="submit">Envoyer</button>
             <button class="btn btn-outline-danger" type="reset">Reset</button>
         </form>
-        <form id="addForm" style="display: none;" method="post" action="LeServlet?flag=addArticle">
+        
+        <form id="addCatForm" style="display: none;" method="post" action="LeServlet?flag=addCategorie">
             <div class="mb-3">
                 <label for="designation" class="form-label">Désignation:</label>
                 <input type="text" class="form-control" name="designation" id="designation" required>
-            </div>
-            <div class="mb-3">
-                <label for="pu" class="form-label">Prix: </label>
-                <input type="text" class="form-control" name="pu" id="pu" required>
-            </div>
-            <div class="mb-3">
-                <label for="qty" class="form-label">Quantité: </label>
-                <input type="text" class="form-control" name="qty" id="qty" required>
-            </div>
-            <div class="mb-3">
-                <label for="cat" class="form-label">Catégorie: </label>
-                <input type="text" class="form-control" name="cat" id="cat" required>
             </div>
             <button class="btn btn-outline-success" type="submit">Envoyer</button>
             <button class="btn btn-outline-danger" type="reset">Reset</button>
