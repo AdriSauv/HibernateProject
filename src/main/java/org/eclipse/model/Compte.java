@@ -11,19 +11,22 @@ public class Compte {
 	private String login;
 	private String pwd;
 	private String type;
-	private int idUsers;
 	
-	public Compte(String login, String pwd, int idUsers) {
+	@ManyToOne
+    @JoinColumn(name = "idUsers")
+	private Users user;
+	
+	public Compte(String login, String pwd, Users user) {
 		super();
 		this.login = login;
 		this.pwd = pwd;
-		this.idUsers = idUsers;
+		this.user = user;
 		this.type = "s";
 	}
 	
 	public Compte() {
 	}
-
+	
 	public String getLogin() {
 		return login;
 	}
@@ -40,13 +43,14 @@ public class Compte {
 		this.pwd = pwd;
 	}
 
-	public int getIdUsers() {
-		return idUsers;
+	public Users getUser() {
+		return user;
 	}
 
-	public void setIdUsers(int idUsers) {
-		this.idUsers = idUsers;
-	}
+	public void setUser(Users user) {
+        this.user = user;
+        user.getComptes().add(this); // Add this compte to the user's collection
+    }
 
 	public int getIdCompte() {
 		return idCompte;

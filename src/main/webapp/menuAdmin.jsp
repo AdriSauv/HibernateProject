@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="css/bootstrap.min(2).css"/>
-<link rel="stylesheet" href="css/accueil.css"/>
+<link rel="stylesheet" href="css/menuAdmin.css"/>
 <title>Menu Admin</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
 		    <div class="collapse navbar-collapse" id="navbarColor02">
 		      <ul class="navbar-nav me-auto">
 		        <li class="nav-item">
-		          <a class="nav-link active" href="#">Home
+		          <a class="nav-link active" href="menuAdmin.jsp">Home
 		            <span class="visually-hidden">(current)</span>
 		          </a>
 		        </li>
@@ -32,21 +32,23 @@
 		        <li class="nav-item dropdown">
 		          <a class="nav-link dropdown-toggle" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false">Articles</a>
 		          <div class="dropdown-menu">
-		            <a class="dropdown-item" href="#">Action</a>
-		            <a class="dropdown-item" href="#">Another action</a>
-		            <a class="dropdown-item" href="#">Something else here</a>
-		            <div class="dropdown-divider"></div>
-		            <a class="dropdown-item" href="#">Separated link</a>
+		            <a class="dropdown-item" href="#" onclick="showForm('addArticleForm')">Ajouter</a>
+		            <a class="dropdown-item" href="#" onclick="showForm('modifyArticleForm')">Modifier</a>
+		            <a class="dropdown-item" href="#" onclick="showForm('deleteDeleteForm')">Supprimer</a>
 		          </div>
 		        </li>
+		        <script>
+                     function showForm(formId) {
+                         $('form').hide();
+                         $('#' + formId).show();
+                     }
+                 </script>
 		         <li class="nav-item dropdown">
 		          <a class="nav-link dropdown-toggle" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false">Catégories</a>
 		          <div class="dropdown-menu">
-		            <a class="dropdown-item" href="#">Action</a>
-		            <a class="dropdown-item" href="#">Another action</a>
-		            <a class="dropdown-item" href="#">Something else here</a>
-		            <div class="dropdown-divider"></div>
-		            <a class="dropdown-item" href="#">Separated link</a>
+		            <a class="dropdown-item" href="#" onclick="showForm('addCatForm')">Ajouter</a>
+		            <a class="dropdown-item" href="#" onclick="showForm('modifyCatForm')">Modifier</a>
+		            <a class="dropdown-item" href="#" onclick="showForm('deleteCatForm')">Supprimer</a>
 		          </div>
 		        </li>
 		      </ul>
@@ -58,7 +60,46 @@
 		</nav>
 	</header>
 	<main>
-	
+		<form id="addArticleForm" style="display: none;" method="post" action="LeServlet?flag=addArticle">
+            <div class="mb-3">
+                <label for="designation" class="form-label">Désignation:</label>
+                <input type="text" class="form-control" name="designation" id="designation" required>
+            </div>
+            <div class="mb-3">
+                <label for="pu" class="form-label">Prix: </label>
+                <input type="text" class="form-control" name="pu" id="pu" required>
+            </div>
+            <div class="mb-3">
+                <label for="qty" class="form-label">Quantité: </label>
+                <input type="text" class="form-control" name="qty" id="qty" required>
+            </div>
+            <div class="mb-3">
+                <label for="cat" class="form-label">Catégorie: </label>
+                <input type="text" class="form-control" name="cat" id="cat" required>
+            </div>
+            <button class="btn btn-outline-success" type="submit">Envoyer</button>
+            <button class="btn btn-outline-danger" type="reset">Reset</button>
+        </form>
+        <form id="addForm" style="display: none;" method="post" action="LeServlet?flag=addArticle">
+            <div class="mb-3">
+                <label for="designation" class="form-label">Désignation:</label>
+                <input type="text" class="form-control" name="designation" id="designation" required>
+            </div>
+            <div class="mb-3">
+                <label for="pu" class="form-label">Prix: </label>
+                <input type="text" class="form-control" name="pu" id="pu" required>
+            </div>
+            <div class="mb-3">
+                <label for="qty" class="form-label">Quantité: </label>
+                <input type="text" class="form-control" name="qty" id="qty" required>
+            </div>
+            <div class="mb-3">
+                <label for="cat" class="form-label">Catégorie: </label>
+                <input type="text" class="form-control" name="cat" id="cat" required>
+            </div>
+            <button class="btn btn-outline-success" type="submit">Envoyer</button>
+            <button class="btn btn-outline-danger" type="reset">Reset</button>
+        </form>
 	</main>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

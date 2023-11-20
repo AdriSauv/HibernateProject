@@ -1,5 +1,7 @@
 package org.eclipse.model;
 
+import java.util.*;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ public class Users {
 	private String cp;
 	private String ville;
 	private String tel;
+	private List<Compte> comptes = new ArrayList<>();
 	
 	public Users(String prenom, String nom, String numRue, String nomRue, String cp, String ville, String tel) {
 		super();
@@ -80,6 +83,8 @@ public class Users {
 	public int getIdUsers() {
 		return idUsers;
 	}
-	
+	public List<Compte> getComptes() {
+        return comptes;
+    }
 	
 }

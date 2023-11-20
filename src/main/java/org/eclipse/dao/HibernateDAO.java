@@ -12,12 +12,12 @@ public class HibernateDAO {
     private static SessionFactory sf;
 
     static {
-        // Initialize the SessionFactory once during the application startup
+        // Lance ce code dès lors qu'on fait appel à HibernateDAO
         Configuration configuration = new Configuration().configure();
         sf = configuration.buildSessionFactory();
     }
 
-    public void ajouterUsers(Users user) {
+    public void ajouterUser(Users user) {
         try (Session session = sf.openSession()) {
             Transaction tr = session.beginTransaction();
             session.persist(user);
@@ -50,7 +50,9 @@ public class HibernateDAO {
     public void deleteUser(Users user) {
         try (Session session = sf.openSession()) {
             Transaction tr = session.beginTransaction();
+            
             session.delete(user);
+            
             tr.commit();
         }
     }
@@ -58,16 +60,17 @@ public class HibernateDAO {
     public void addUserAndAccount(Users user, Compte compte) {
         try (Session session = sf.openSession()) {
             Transaction tr = session.beginTransaction();
+            
+            compte.setUser(user);
+
+            user.getComptes().add(compte);
+
             session.persist(user);
-            
-            compte.setIdUsers(user.getIdUsers());
-            
             session.persist(compte);
 
             tr.commit();
         }
-    }
-    
+    }    
     public Compte verifierCoordonnees(String login, String pwd) {
     	Compte compte = null;
     	

@@ -66,10 +66,11 @@ public class LeServlet extends HttpServlet {
 	    
 	    Users user = new Users(prenom, nom, numRue, nomRue, cp, ville, tel);
 	    
-	    Compte compte = new Compte(login, pwd, user.getIdUsers());
 	    
 	    HibernateDAO dao = new HibernateDAO();
-	    dao.addUserAndAccount(user, compte);
+	    dao.ajouterUser(user);
+	    
+	    Compte compte = new Compte(login, pwd, user);
 	    
 	    request.setAttribute("message", "Compte créé avec succès");
 		} catch(Exception e) {
